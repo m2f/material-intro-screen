@@ -20,6 +20,7 @@ import agency.tango.materialintroscreen.parallax.ParallaxFragment;
 public class SlideFragment extends ParallaxFragment {
     private final static String BACKGROUND_COLOR = "background_color";
     private static final String BUTTONS_COLOR = "buttons_color";
+    private static final String TEXT_COLOR = "text_color";
     private static final String TITLE = "title";
     private static final String DESCRIPTION = "description";
     private static final String NEEDED_PERMISSIONS = "needed_permission";
@@ -29,6 +30,7 @@ public class SlideFragment extends ParallaxFragment {
 
     private int backgroundColor;
     private int buttonsColor;
+    private int textColor;
     private int image;
     private String title;
     private String description;
@@ -45,6 +47,7 @@ public class SlideFragment extends ParallaxFragment {
         Bundle bundle = new Bundle();
         bundle.putInt(BACKGROUND_COLOR, builder.backgroundColor);
         bundle.putInt(BUTTONS_COLOR, builder.buttonsColor);
+        bundle.putInt(TEXT_COLOR, builder.textColor);
         bundle.putInt(IMAGE, builder.image);
         bundle.putString(TITLE, builder.title);
         bundle.putString(DESCRIPTION, builder.description);
@@ -74,6 +77,7 @@ public class SlideFragment extends ParallaxFragment {
         Bundle bundle = getArguments();
         backgroundColor = bundle.getInt(BACKGROUND_COLOR);
         buttonsColor = bundle.getInt(BUTTONS_COLOR);
+        textColor = ContextCompat.getColor(getContext(), bundle.getInt(TEXT_COLOR));
         image = bundle.getInt(IMAGE, 0);
         title = bundle.getString(TITLE);
         description = bundle.getString(DESCRIPTION);
@@ -114,11 +118,21 @@ public class SlideFragment extends ParallaxFragment {
     private void updateViewWithValues() {
         titleTextView.setText(title);
         descriptionTextView.setText(description);
+        titleTextView.setTextColor(textColor);
+        descriptionTextView.setTextColor(textColor);
 
         if (image != 0) {
             imageView.setImageDrawable(ContextCompat.getDrawable(getActivity(), image));
             imageView.setVisibility(View.VISIBLE);
         }
+    }
+
+    public TextView getTitleTextView() {
+        return titleTextView;
+    }
+
+    public TextView getDescriptionTextView() {
+        return descriptionTextView;
     }
 
     public void askForPermissions() {
