@@ -4,14 +4,29 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimary">
 
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/btn_launch_activity"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal|bottom"
+        android:gravity="center"
         android:layout_margin="16dp"
-        android:text="@string/launch_intro_activity"
-        android:theme="@style/ColoredButton" />
+        android:orientation="vertical">
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_launch_activity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/launch_intro_activity"
+            android:theme="@style/ColoredButton" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_custom_activity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/launch_custom_activity"
+            android:theme="@style/ColoredButton" />
+
+    </LinearLayout>
 
     <ImageView
         android:layout_width="wrap_content"

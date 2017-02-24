@@ -5,6 +5,7 @@ import android.content.res.ColorStateList;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.ColorRes;
+import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CoordinatorLayout;
@@ -63,6 +64,10 @@ public abstract class MaterialIntroActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        onCreate(savedInstanceState, R.layout.activity_material_intro);
+    }
+
+    public void onCreate(@Nullable Bundle savedInstanceState, @LayoutRes int materialLayout) {
         super.onCreate(savedInstanceState);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
@@ -70,7 +75,7 @@ public abstract class MaterialIntroActivity extends AppCompatActivity {
             window.setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         }
 
-        setContentView(R.layout.activity_material_intro);
+        setContentView(materialLayout);
 
         overScrollLayout = (OverScrollViewPager) findViewById(R.id.view_pager_slides);
         viewPager = overScrollLayout.getOverScrollView();

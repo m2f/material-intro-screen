@@ -77,7 +77,9 @@ public class SlideFragment extends ParallaxFragment {
         Bundle bundle = getArguments();
         backgroundColor = bundle.getInt(BACKGROUND_COLOR);
         buttonsColor = bundle.getInt(BUTTONS_COLOR);
-        textColor = ContextCompat.getColor(getContext(), bundle.getInt(TEXT_COLOR));
+        int textColorRes = bundle.getInt(TEXT_COLOR);
+        textColorRes = textColorRes > 0 ? textColorRes : R.color.black;
+        textColor = ContextCompat.getColor(getContext(), textColorRes);
         image = bundle.getInt(IMAGE, 0);
         title = bundle.getString(TITLE);
         description = bundle.getString(DESCRIPTION);
