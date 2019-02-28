@@ -4,15 +4,15 @@ import android.animation.ArgbEvaluator;
 import android.content.res.ColorStateList;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.ColorRes;
-import android.support.annotation.LayoutRes;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.Snackbar;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.view.ViewCompat;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.ColorRes;
+import androidx.annotation.LayoutRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import com.google.android.material.snackbar.Snackbar;
+import androidx.core.content.ContextCompat;
+import androidx.core.view.ViewCompat;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.SparseArray;
 import android.view.KeyEvent;
 import android.view.View;
@@ -64,11 +64,16 @@ public abstract class MaterialIntroActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        onCreate(savedInstanceState, R.layout.activity_material_intro);
+        super.onCreate(savedInstanceState);
+        this.initialize(R.layout.activity_material_intro);
     }
 
     public void onCreate(@Nullable Bundle savedInstanceState, @LayoutRes int materialLayout) {
         super.onCreate(savedInstanceState);
+        this.initialize(materialLayout);
+    }
+
+    private void initialize(@LayoutRes int materialLayout) {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             Window window = getWindow();
