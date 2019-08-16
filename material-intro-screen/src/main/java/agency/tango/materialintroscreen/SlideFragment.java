@@ -1,7 +1,12 @@
 package agency.tango.materialintroscreen;
 
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.text.Html;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -140,14 +145,26 @@ public class SlideFragment extends ParallaxFragment {
     }
 
     private void updateViewWithValues() {
-        titleTextView.setText(title);
-        descriptionTextView.setText(description);
+        titleTextView.setText(fromHtml(title));
         titleTextView.setTextColor(textColor);
+
+        descriptionTextView.setText(fromHtml(description));
         descriptionTextView.setTextColor(textColor);
 
         if (image != 0) {
             imageView.setImageDrawable(ContextCompat.getDrawable(requireContext(), image));
             imageView.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private static Spanned fromHtml(String content) {
+        if(TextUtils.isEmpty(content)){
+            return new SpannableString("");
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            return Html.fromHtml(content, Html.FROM_HTML_MODE_COMPACT);
+        } else {
+            return Html.fromHtml(content);
         }
     }
 

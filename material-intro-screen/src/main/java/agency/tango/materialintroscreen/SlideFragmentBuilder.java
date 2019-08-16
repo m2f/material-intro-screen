@@ -10,6 +10,7 @@ public class SlideFragmentBuilder {
     int selectedIndicatorColor;
     int unselectedIndicatorColor;
     int textColor;
+    boolean canMoveFurther;
     String title;
     String description;
     String[] neededPermissions;
@@ -38,6 +39,11 @@ public class SlideFragmentBuilder {
 
     public SlideFragmentBuilder textColor(@ColorRes int textColor) {
         this.textColor = textColor;
+        return this;
+    }
+
+    public SlideFragmentBuilder canMoveFurther(boolean canMoveFurther) {
+        this.canMoveFurther = canMoveFurther;
         return this;
     }
 
