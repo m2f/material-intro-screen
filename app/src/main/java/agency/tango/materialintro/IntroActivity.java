@@ -2,8 +2,10 @@ package agency.tango.materialintro;
 
 import android.Manifest;
 import android.os.Bundle;
+
 import androidx.annotation.FloatRange;
 import androidx.annotation.Nullable;
+
 import android.view.View;
 import android.widget.Toast;
 
@@ -30,6 +32,8 @@ public class IntroActivity extends MaterialIntroActivity {
                         .backgroundColor(R.color.first_slide_background)
                         .buttonsColor(R.color.first_slide_buttons)
                         .image(R.drawable.img_office)
+                        .selectedIndicatorColor(R.color.colorPrimary)
+                        .unselectedIndicatorColor(R.color.colorAccent)
                         .title("Organize your time with us")
                         .description("Would you try?")
                         .build(),

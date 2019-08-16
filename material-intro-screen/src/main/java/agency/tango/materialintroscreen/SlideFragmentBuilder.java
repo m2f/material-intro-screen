@@ -7,6 +7,8 @@ import androidx.annotation.DrawableRes;
 public class SlideFragmentBuilder {
     int backgroundColor;
     int buttonsColor;
+    int selectedIndicatorColor;
+    int unselectedIndicatorColor;
     int textColor;
     String title;
     String description;
@@ -21,6 +23,16 @@ public class SlideFragmentBuilder {
 
     public SlideFragmentBuilder buttonsColor(@ColorRes int buttonsColor) {
         this.buttonsColor = buttonsColor;
+        return this;
+    }
+
+    public SlideFragmentBuilder selectedIndicatorColor(@ColorRes int selectedIndicatorColor) {
+        this.selectedIndicatorColor = selectedIndicatorColor;
+        return this;
+    }
+
+    public SlideFragmentBuilder unselectedIndicatorColor(@ColorRes int unselectedIndicatorColor) {
+        this.unselectedIndicatorColor = unselectedIndicatorColor;
         return this;
     }
 

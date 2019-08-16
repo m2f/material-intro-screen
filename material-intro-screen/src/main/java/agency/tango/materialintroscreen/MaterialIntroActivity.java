@@ -82,13 +82,13 @@ public abstract class MaterialIntroActivity extends AppCompatActivity {
 
         setContentView(materialLayout);
 
-        overScrollLayout = (OverScrollViewPager) findViewById(R.id.view_pager_slides);
+        overScrollLayout = findViewById(R.id.view_pager_slides);
         viewPager = overScrollLayout.getOverScrollView();
-        pageIndicator = (InkPageIndicator) findViewById(R.id.indicator);
-        backButton = (ImageButton) findViewById(R.id.button_back);
-        nextButton = (ImageButton) findViewById(R.id.button_next);
-        skipButton = (ImageButton) findViewById(R.id.button_skip);
-        coordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinator_layout_slide);
+        pageIndicator = findViewById(R.id.indicator);
+        backButton = findViewById(R.id.button_back);
+        nextButton = findViewById(R.id.button_next);
+        skipButton = findViewById(R.id.button_skip);
+        coordinatorLayout = findViewById(R.id.coordinator_layout_slide);
 
         adapter = new SlidesAdapter(getSupportFragmentManager());
 
@@ -408,11 +408,15 @@ public abstract class MaterialIntroActivity extends AppCompatActivity {
     }
 
     private Integer getBackgroundColor(int position, float positionOffset) {
-        return (Integer) argbEvaluator.evaluate(positionOffset, color(adapter.getItem(position).backgroundColor()), color(adapter.getItem(position + 1).backgroundColor()));
+        return (Integer) argbEvaluator.evaluate(positionOffset,
+                color(adapter.getItem(position).backgroundColor()),
+                color(adapter.getItem(position + 1).backgroundColor()));
     }
 
     private Integer getButtonsColor(int position, float positionOffset) {
-        return (Integer) argbEvaluator.evaluate(positionOffset, color(adapter.getItem(position).buttonsColor()), color(adapter.getItem(position + 1).buttonsColor()));
+        return (Integer) argbEvaluator.evaluate(positionOffset,
+                color(adapter.getItem(position).buttonsColor()),
+                color(adapter.getItem(position + 1).buttonsColor()));
     }
 
     private int color(@ColorRes int color) {
@@ -431,16 +435,14 @@ public abstract class MaterialIntroActivity extends AppCompatActivity {
         }
 
         private void setViewsColor(int position, float offset) {
-            int backgroundColor = getBackgroundColor(position, offset);
-            viewPager.setBackgroundColor(backgroundColor);
-
+            viewPager.setBackgroundColor(getBackgroundColor(position, offset));
+            pageIndicator.setSelectedPageIndicatorColor(adapter.getItem(position).getSelectedIndicatorColor());
+            pageIndicator.setUnselectedPageIndicatorColor(adapter.getItem(position).getUnselectedIndicatorColor());
             int buttonsColor = getButtonsColor(position, offset);
+            tintButtons(ColorStateList.valueOf(buttonsColor));
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 getWindow().setStatusBarColor(buttonsColor);
             }
-            pageIndicator.setPageIndicatorColor(buttonsColor);
-
-            tintButtons(ColorStateList.valueOf(buttonsColor));
         }
 
         private void tintButtons(ColorStateList color) {
